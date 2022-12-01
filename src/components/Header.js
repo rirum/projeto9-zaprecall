@@ -2,14 +2,29 @@ import logo from "../assets/logo.png"
 import styled from "styled-components"
 export default function Header(){
     return (
-        <div className="logo-container">
+        <StyledHeader>
         <img src={logo} alt="logo-zap"/>
         <h1>ZapRecall</h1>
-        </div>
+        </StyledHeader>
     );
 }
 
-// const ImagemLogo = styled.img`
-//   width: 52px;
-// `
-// substituir o img src como <ImagemLogo src={logo} alt="logo-zap"/> </ImagemLogo>
+const StyledHeader = styled.div`
+
+  display: flex;
+  align-items: center;
+  margin: 40px 0 20px 0;
+  img {
+    width: 52px;
+  }
+  h1 {
+    font-family: 'Righteous', cursive;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 45px;
+    color: #FFFFFF;
+    margin-left: 20px;
+}
+
+`
