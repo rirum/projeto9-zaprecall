@@ -1,28 +1,42 @@
 import styled from "styled-components";
-import setaVirar from "../assets/seta_virar.png"
-import setaPlay from "../assets/seta_play.png"
-import perguntas from "../perguntas";
 import React from "react";
+import setaVirar from "../assets/seta_virar.png";
+import setaPlay from "../assets/seta_play.png";
+import perguntas from "../perguntas";
 
 
 
-export default function PerguntaAberta(){
+
+export default function Card({statusJogo,respondidos, setRespondidos,cartaAberta, setCartaAberta}){
+
+
  
+ function abreCartao(carta){
+
+   const cartas = [cartaAberta, perguntas.question]
+   setCartaAberta(cartas);
+   console.log(cartas);
+
+    }
+    
+
     return (
        <>
             
             {perguntas.map ((pergunta) => ( 
             <StyledPerguntaFechada> 
             <p>Pergunta {pergunta.id}</p>
-            <img src={setaPlay} alt="seta"/>
+            <img src={setaPlay} onClick={()=>abreCartao()} alt="seta"/>
             </StyledPerguntaFechada>
             ))}
+            {perguntas.map((pergunta) =>(
+            <StyledPerguntaAberta
             
-            <StyledPerguntaAberta>
-            <p></p>
+            >
+            <p>{pergunta.question}</p>
             <img src={setaVirar}/>
             </StyledPerguntaAberta>
-          
+          ))}
             <StyledPerguntaAberta>
             <p>Letra maiúscula</p>
             <StyledBotoes>
@@ -58,12 +72,7 @@ margin-left: 6px;
       align-items: center;
       justify-content: center;
       text-align: center;
-      /* Você vai precisar trocar a cor dos botões e alguns textos!
-      VERDE = "#2FBE34"
-      AMARELO = "#FF922E"
-      VERMELHO = "#FF3030"
-      CINZA = "#333333" 
-    */ 
+    
     }
 `
 
@@ -82,7 +91,8 @@ const StyledPerguntaAberta = styled.div`
   line-height: 22px;
   color: #333333;
   position: relative;
-  display: flex;
+  display: ${props => (props.clicked ? 'flex' : 'none')};
+ 
   flex-direction: column;
   justify-content: space-between;
      img{
