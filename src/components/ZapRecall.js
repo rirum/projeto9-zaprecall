@@ -4,10 +4,6 @@ import Footer from "./Footer";
 import Lista from "./Lista";
 import React from "react";
 
-
-
-
-
 export default function ZapRecall(props) {
 
   const [cartaAberta, setCartaAberta] = React.useState([]);
@@ -15,17 +11,7 @@ export default function ZapRecall(props) {
   const [statusJogo, setStatusJogo] = React.useState("inicio");
    
   
-      /* Você vai precisar trocar a cor dos botões e alguns textos!
-      const VERDE = "#2FBE34"
-      const AMARELO = "#FF922E"
-      const VERMELHO = "#FF3030"
-      const CINZA = "#333333" 
-    */ 
-    // function contagemRespostas(){
-    //     const novaResposta = respostas + 1
-    //     setRespondidos(novaResposta)
-    //     console.log(novaResposta)
-    // }
+
 
     return (
       

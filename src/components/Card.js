@@ -2,39 +2,39 @@ import styled from "styled-components";
 import React from "react";
 import setaVirar from "../assets/seta_virar.png";
 import setaPlay from "../assets/seta_play.png";
+import iconeErro from "../assets/icone_erro.png";
+import iconeQuase from "../assets/icone_quase.png";
+import iconeCerto from "../assets/icone_certo.png";
 
-
-const VERDE = "#2FBE34"
+  const VERDE = "#2FBE34"
   const AMARELO = "#FF922E"
   const VERMELHO = "#FF3030"
   const CINZA = "#333333" 
 
 
 
-export const Card = ({index, card: { question, answer }}) => {
+export const Card = ({quantidadeRespondidos, setQuantidadeRespondidos, index, card: { question, answer }}) => {
 
   const [ statusCard, setStatusCard ] = React.useState('inicial');
   const [ textoCard, setTextoCard ] = React.useState(`Pergunta ${index + 1}`);
   const [ imagemCard, setImagemCard ] = React.useState(setaPlay)    
-  
   const [ statusCor, setStatusCor ] = React.useState(CINZA);
-
   const [dataTestImg, setDataTestImg] = React.useState('play-btn');
  
- const abrirCarta = () => {
-      setStatusCard ('aberto');
-      setImagemCard ('setaVirar');
-      setTextoCard(question);
-      setDataTestImg('turn-btn');
+  const abrirCarta = () => {
+        setStatusCard ('aberto');
+        setImagemCard (setaVirar);
+        setTextoCard(question);
+        setDataTestImg('turn-btn');
 
-    }
+      }
 
-    const responderCarta = () => {
+  const responderCarta = () => {
       setStatusCard('resposta');
       setTextoCard(answer);
-    }
+      }
     
-    const manipulaClickImgCard = () => {
+  const manipulaClickImgCard = () => {
       if (statusCard === 'inicial') {
         abrirCarta();
       }else if (statusCard === 'aberto'){
@@ -42,16 +42,34 @@ export const Card = ({index, card: { question, answer }}) => {
       }
     }
 
+  const manipulaClickResposta = (cor, imagem, dataTest) => {
+      setStatusCard('final');
+      setImagemCard(imagem);
+      setTextoCard(`Pergunta ${index + 1}`);
+      setQuantidadeRespondidos(quantidadeRespondidos + 1);
+      console.log(cor);
+      setStatusCor(cor);
+      console.log(statusCor);
+      setDataTestImg(dataTest);
+    }
+
     return (
       <StyledCard
       data-test='flashcard'
       statusCard={statusCard}
       statusCor={statusCor}
-    >
+      >
 
       <p data-test='flashcard-text'>{ textoCard }</p>        
 
-      { (statusCard !== 'resposta') && <img data-test={dataTestImg} onClick={manipulaClickImgCard} src={imagemCard} alt="" /> }   
+      { (statusCard !== 'resposta') && <img data-test={dataTestImg} onClick={manipulaClickImgCard} src={imagemCard} alt="" /> }  
+      { (statusCard === 'resposta') &&
+      <ContainerBotoes>
+        <StyleBotao data-test='no-btn' onClick={ () => manipulaClickResposta (VERMELHO, iconeErro, 'no-icon')} color={VERMELHO}> Não Lembrei </StyleBotao>
+        <StyleBotao data-test='partial-btn' onClick={ () => manipulaClickResposta (AMARELO, iconeQuase, 'partial-btn')} color={AMARELO}> Quase não lembrei </StyleBotao>
+        <StyleBotao data-test='zap-btn' onClick={ () => manipulaClickResposta (VERDE, iconeCerto, 'zap-btn')} color={VERDE}> Zap! </StyleBotao>
+      </ContainerBotoes>
+      } 
       </StyledCard>
        
     );
@@ -79,7 +97,7 @@ margin-right: 6px;
 `;
 
 const StyleBotao = styled.div `
-  width: 90px;
+  width: 85px;
   font-family: 'Recursive', sans-serif;
   font-style: normal;
       font-weight: 400;

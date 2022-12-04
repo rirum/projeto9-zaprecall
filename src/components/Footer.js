@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import React from "react";
+import perguntas from "../perguntas";
 
-export default function Footer({respondidos}){
+export default function Footer({quantidadeRespondidos}){
     return(
        <StyledFooter>
-        <p>{respondidos}/qtdadePerguntas Concluídos</p> 
+        <p>{quantidadeRespondidos}/{perguntas.length} Concluídos</p> 
        </StyledFooter>
     );
 }
