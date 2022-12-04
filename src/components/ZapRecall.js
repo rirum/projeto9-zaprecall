@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Header from "./Header";
 import Footer from "./Footer";
-import Card from "./Card";
+import Lista from "./Lista";
 import React from "react";
 
 
@@ -10,9 +10,9 @@ import React from "react";
 
 export default function ZapRecall(props) {
 
-    const [respondidos, setRespondidos] = React.useState([]);
-    const [cartaAberta, setCartaAberta] = React.useState([]);
-    const [mostrarCarta, setMostrarCarta] = React.useState(false);
+  const [cartaAberta, setCartaAberta] = React.useState([]);
+  const [quantidadeRespondidos, setQuantidadeRespondidos] = React.useState(0);
+  const [statusJogo, setStatusJogo] = React.useState("inicio");
    
   
       /* Você vai precisar trocar a cor dos botões e alguns textos!
@@ -33,8 +33,19 @@ export default function ZapRecall(props) {
       
       
       <Header />
-      <Card/>
-      <Footer />
+      <Lista
+       cartaAberta = {cartaAberta}
+       setCartaAberta = {setCartaAberta}
+       statusJogo = {statusJogo}
+       setStatusJogo ={setStatusJogo}
+       quantidadeRespondidos = {quantidadeRespondidos}
+       setQuantidadeRespondidos = {setQuantidadeRespondidos}
+
+      />
+      <Footer 
+        quantidadeRespondidos = {quantidadeRespondidos} 
+      />
+      
       
       </Conteudo>
       
