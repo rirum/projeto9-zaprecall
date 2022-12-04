@@ -4,7 +4,7 @@ import perguntas from "../perguntas";
 
 export default function Footer({quantidadeRespondidos}){
     return(
-       <StyledFooter>
+       <StyledFooter data-test="footer">
         <p>{quantidadeRespondidos}/{perguntas.length} Concluídos</p> 
        </StyledFooter>
     );
