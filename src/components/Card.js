@@ -66,8 +66,8 @@ export const Card = ({quantidadeRespondidos, setQuantidadeRespondidos, index, ca
       { (statusCard === 'resposta') &&
       <ContainerBotoes>
         <StyleBotao data-test='no-btn' onClick={ () => manipulaClickResposta (VERMELHO, iconeErro, 'no-icon')} color={VERMELHO}> Não Lembrei </StyleBotao>
-        <StyleBotao data-test='partial-btn' onClick={ () => manipulaClickResposta (AMARELO, iconeQuase, 'partial-btn')} color={AMARELO}> Quase não lembrei </StyleBotao>
-        <StyleBotao data-test='zap-btn' onClick={ () => manipulaClickResposta (VERDE, iconeCerto, 'zap-btn')} color={VERDE}> Zap! </StyleBotao>
+        <StyleBotao data-test='partial-btn' onClick={ () => manipulaClickResposta (AMARELO, iconeQuase, 'partial-icon')} color={AMARELO}> Quase não lembrei </StyleBotao>
+        <StyleBotao data-test='zap-btn' onClick={ () => manipulaClickResposta (VERDE, iconeCerto, 'zap-icon')} color={VERDE}> Zap! </StyleBotao>
       </ContainerBotoes>
       } 
       </StyledCard>
